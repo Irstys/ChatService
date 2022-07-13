@@ -31,12 +31,8 @@ object ChatService {
                 unreadChatList.plusAssign(newList)
             }
         }
-        val iterator = unreadChatList.iterator()
-        iterator.forEach {
-            if (it.isEmpty()) {
-                iterator.remove()
-            }
-        }
+        val iterator = unreadChatList.asSequence()
+            .filter { !(it.isEmpty()) }
         return unreadChatList
     }
 
